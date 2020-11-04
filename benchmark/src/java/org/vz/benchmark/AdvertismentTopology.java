@@ -33,7 +33,6 @@ import org.apache.heron.api.topology.TopologyBuilder;
 import org.apache.heron.api.topology.TopologyContext;
 import org.apache.heron.api.tuple.Tuple;
 import org.apache.heron.common.basics.ByteAmount;
-import org.apache.heron.simulator.Simulator;
 import org.apache.heron.spouts.kafka.DefaultKafkaConsumerFactory;
 import org.apache.heron.spouts.kafka.KafkaConsumerFactory;
 import org.apache.heron.spouts.kafka.KafkaSpout;
@@ -62,7 +61,7 @@ public final class AdvertismentTopology {
 
     TopologyBuilder topologyBuilder = new TopologyBuilder();
     topologyBuilder.setSpout(KAFKA_SPOUT_NAME, new KafkaSpout<>(kafkaConsumerFactory,
-        Collections.singletonList("test-topic")));
+        Collections.singletonList("ad-events")));
     topologyBuilder.setBolt(LOGGING_BOLT_NAME, new LoggingBolt()).shuffleGrouping(KAFKA_SPOUT_NAME);
     Config config = new Config();
     config.setNumStmgrs(1);
@@ -78,8 +77,7 @@ public final class AdvertismentTopology {
     config.setComponentRam(LOGGING_BOLT_NAME, ByteAmount.fromMegabytes(256));
     config.setComponentDisk(LOGGING_BOLT_NAME, ByteAmount.fromMegabytes(256));
 
-    Simulator simulator = new Simulator();
-    simulator.submitTopology("heron-kafka-spout-sample-topology", config,
+    HeronSubmitter.submitTopology("heron-kafka-spout-sample-topology", config,
         topologyBuilder.createTopology());
   }
 
