@@ -37,6 +37,9 @@ import org.apache.heron.spouts.kafka.DefaultKafkaConsumerFactory;
 import org.apache.heron.spouts.kafka.KafkaConsumerFactory;
 import org.apache.heron.spouts.kafka.KafkaSpout;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.heron.api.HeronSubmitter;
+import org.apache.heron.api.exception.AlreadyAliveException;
+import org.apache.heron.api.exception.InvalidTopologyException;
 
 public final class AdvertismentTopology {
   private static final Logger LOG = LoggerFactory.getLogger(AdvertismentTopology.class);
@@ -46,7 +49,7 @@ public final class AdvertismentTopology {
   private AdvertismentTopology() {
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException {
     Map<String, Object> kafkaConsumerConfig = new HashMap<>();
     kafkaConsumerConfig.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
     kafkaConsumerConfig.put(ConsumerConfig.GROUP_ID_CONFIG, "sample-kafka-spout");
@@ -77,8 +80,7 @@ public final class AdvertismentTopology {
     config.setComponentRam(LOGGING_BOLT_NAME, ByteAmount.fromMegabytes(256));
     config.setComponentDisk(LOGGING_BOLT_NAME, ByteAmount.fromMegabytes(256));
 
-    HeronSubmitter.submitTopology("heron-kafka-spout-sample-topology", config,
-        topologyBuilder.createTopology());
+    HeronSubmitter.submitTopology(args[0], config, topologyBuilder.createTopology());
   }
 
   public static class LoggingBolt extends BaseRichBolt {

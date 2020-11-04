@@ -1,0 +1,1 @@
+heron submit local compiled/benchmark-topology.jar org.vz.benchmark.AdvertismentTopology AdvertismentTopology  --deploy-deactivated
