@@ -10,11 +10,13 @@ deps_bench = [
     "//heron/simulator/src/java:simulator-java",
     "@maven//:org_apache_kafka_kafka_clients",
     "@maven//:org_slf4j_slf4j_api",
+    "@maven//:org_json_json",
+    "@maven//:redis_clients_jedis"
 ]
 
 java_binary(
     name = "benchmark-unshaded",
-    srcs = glob(["org/vz/benchmark/*.java"]),
+    srcs = glob(["org/vz/**/*.java"]),
     create_executable = 0,
     deps = deps_bench,
 )

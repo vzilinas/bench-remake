@@ -90,6 +90,24 @@ java_library(
 )
 
 java_library(
+    name = "org_json",
+    srcs = ["Empty.java"],
+    exports = ["@maven//:org_json_json"],
+    deps = [
+        "@maven//:org_json_json"
+    ],
+)
+
+java_library(
+    name = "redis_jedis",
+    srcs = ["Empty.java"],
+    exports = ["@maven//:redis_clients_jedis"],
+    deps = [
+        "@maven//:redis_clients_jedis"
+    ],
+)
+
+java_library(
     name = "kryo",
     srcs = ["Empty.java"],
     exports = ["@maven//:com_esotericsoftware_kryo"],

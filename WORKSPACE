@@ -114,6 +114,8 @@ maven_install(
         "org.powermock:powermock-module-junit4:" + powermock_version,
         "com.puppycrawl.tools:checkstyle:6.17",
         "com.googlecode.json-simple:json-simple:1.1",
+        "org.json:json:20140107",
+        "redis.clients:jedis:2.4.2",
         maven.artifact(
             group = "org.apache.httpcomponents",
             artifact = "httpclient",

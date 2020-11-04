@@ -1,0 +1,22 @@
+kafka.brokers:
+    - "localhost"
+
+zookeeper.servers:
+    - "localhost"
+
+kafka.port: 9092
+zookeeper.port: 2181
+redis.host: "localhost"
+kafka.topic: "ad-events"
+kafka.partitions: 1
+process.hosts: 1
+process.cores: 4
+storm.workers: 4
+storm.ackers: 2
+storm.ack: "enabled"
+time.divisor: 10000
+
+#Spark Specific
+spark.batchtime: 1000
+spark.master: "local"
+spark.app.name: "KafkaRedisAdvertisingStream"
