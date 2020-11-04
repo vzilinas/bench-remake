@@ -1,0 +1,56 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "network-cxx",
+    srcs = [
+        "asyncdns.cpp",
+        "asyncdns.h",
+        "baseclient.cpp",
+        "baseclient.h",
+        "baseconnection.cpp",
+        "baseconnection.h",
+        "baseserver.cpp",
+        "baseserver.h",
+        "client.cpp",
+        "client.h",
+        "connection.cpp",
+        "connection.h",
+        "event_loop.h",
+        "event_loop_impl.cpp",
+        "event_loop_impl.h",
+        "httpclient.cpp",
+        "httpclient.h",
+        "httpserver.cpp",
+        "httpserver.h",
+        "httputils.cpp",
+        "httputils.h",
+        "modinit.cpp",
+        "network_error.h",
+        "networkoptions.cpp",
+        "networkoptions.h",
+        "packet.cpp",
+        "packet.h",
+        "piper.cpp",
+        "piper.h",
+        "regevent.h",
+        "server.cpp",
+        "server.h",
+    ],
+    hdrs = [
+        "modinit.h",
+        "network.h",
+    ],
+    copts = [
+        "-Iheron/common/src/cpp",
+        "-I$(GENDIR)/heron/common/src/cpp",
+    ],
+    linkstatic = 1,
+    deps = [
+        "//heron/common/src/cpp/basics:basics-cxx",
+        "//heron/common/src/cpp/errors:errors-cxx",
+        "//heron/common/src/cpp/threads:threads-cxx",
+        "@org_libevent_libevent//:libevent",
+    ],
+)

@@ -1,0 +1,60 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cc_library(
+    name = "basics-cxx",
+    srcs = [
+        "basics.cpp",
+        "callback.h",
+        "callback1.h",
+        "classcallback.h",
+        "classcallback1.h",
+        "execmeta.cpp",
+        "execmeta.h",
+        "fileutils.cpp",
+        "fileutils.h",
+        "iputils.cpp",
+        "iputils.h",
+        "mempool.cpp",
+        "mempool.h",
+        "modinit.cpp",
+        "modinit.h",
+        "processutils.cpp",
+        "processutils.h",
+        "randutils.cpp",
+        "randutils.h",
+        "ridgen.cpp",
+        "ridgen.h",
+        "sockutils.cpp",
+        "sockutils.h",
+        "spconsts.h",
+        "spfuncs.h",
+        "sphash.h",
+        "sprcodes.h",
+        "sptest.h",
+        "sptypes.h",
+        "strutils.cpp",
+        "strutils.h",
+    ],
+    hdrs = [
+        "basics.h",
+    ],
+    copts = [
+        "-Ithird_party",
+        "-Iheron/common/src/cpp",
+        "-I.",
+    ],
+    linkstatic = 1,
+    deps = [
+        "//config:config-cxx",
+        "@com_github_google_glog//:glog",
+        "@com_github_gflags_gflags//:gflags",
+        "@com_github_gperftools_gperftools//:tcmalloc",
+        "@com_github_corvusoft_kashmir_cpp//:kashmir-cxx",
+        "@com_google_protobuf//:protobuf",
+    ] + select({
+        "//tools/platform:darwin": [],
+        "//conditions:default": ["@org_nongnu_libunwind//:libunwind"],
+    }),
+)
