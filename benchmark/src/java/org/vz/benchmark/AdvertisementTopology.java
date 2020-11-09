@@ -203,8 +203,7 @@ public final class AdvertisementTopology {
 
         @Override
         public void execute(Tuple tuple) {
-            LOG.info(tuple.getString(0));
-            JSONObject obj = new JSONObject(tuple.getString(0));
+            JSONObject obj = new JSONObject(tuple.getString(1));
             _collector.emit(tuple, new Values(obj.getString("user_id"),
                     obj.getString("page_id"),
                     obj.getString("ad_id"),
