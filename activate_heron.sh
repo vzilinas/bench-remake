@@ -1,2 +1,2 @@
 heron activate local AdvertisementTopology
-# heron activate local WordCountTopology
+heron activate local WordCountTopology
