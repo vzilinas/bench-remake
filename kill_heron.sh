@@ -1,2 +1,2 @@
 heron kill local AdvertisementTopology
-# heron kill local WordCountTopology
+heron kill local WordCountTopology
